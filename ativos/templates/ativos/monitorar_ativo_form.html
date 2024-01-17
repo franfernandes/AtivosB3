@@ -1,0 +1,35 @@
+<!-- monitorar_ativo_form.html -->
+
+{% extends 'base.html' %}
+
+{% block content %}
+
+  <!-- Exibir mensagens de feedback -->
+  {% if messages %}
+  <ul class="messages">
+    {% for message in messages %}
+      <li class="{{ message.tags }}">{{ message }}</li>
+    {% endfor %}
+  </ul>
+  {% endif %}
+
+  <h2>Monitorar {{ ativo.nome }}</h2>
+  R$ {{ ativo.cotacao }}
+  <form method="post">
+    {% csrf_token %}
+    {% for field in form %}
+      <!-- Verifica se o campo é a frequência de monitoramento -->
+      {% if field.name == 'frequencia_monitoramento' %}
+        <p>
+          <label for="{{ field.id_for_label }}">Frequência de Monitoramento (em minutos):</label>
+          <input type="number" name="{{ field.html_name }}" value="{{ field.value }}" min="1" id="{{ field.id_for_label }}">
+        </p>
+      {% else %}
+        <p>
+          {{ field.label_tag }} {{ field }}
+        </p>
+      {% endif %}
+    {% endfor %}
+    <button type="submit">Salvar</button>
+  </form>
+{% endblock %}

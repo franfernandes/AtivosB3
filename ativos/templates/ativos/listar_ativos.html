@@ -1,0 +1,49 @@
+{% block content %}
+  <div style="text-align: right;">
+    {% if request.user.is_authenticated %}
+      Olá, {{ request.user.get_full_name|default:request.user.username }}!
+      <form action="{% url 'logout' %}" method="post">
+        {% csrf_token %}
+        <button type="submit">Logout</button>
+      </form>
+    {% else %}
+      <a href="{% url 'login' %}">Login</a>
+    {% endif %}
+  </div>
+
+  <h1>Cotação de Ativos da B3</h1>
+ 
+  <table>
+    <thead>
+      <tr>
+        <th>Código</th>
+        <th>Nome</th>
+        <th>Último Fechamento</th>
+        <th>Abertura</th>
+        <th>Cotação</th>
+        <th>Variação Percentual</th>
+        <th>Ações</th> <!-- Coluna para ações como monitorar -->
+      </tr>
+    </thead>
+    <tbody>
+      {% for ativo in detalhes_ativos %}
+        <tr>
+          <td>{{ ativo.codigo }}</td>
+          <td>{{ ativo.nome }}</td>
+          <td>R$ {{ ativo.fechamento }}</td>
+          <td>R$ {{ ativo.abertura }}</td>
+          <td>R$ {{ ativo.cotacao }}</td>
+          <td>{{ ativo.variacao_percentual }}%</td>
+          <td>
+            <a href="{% url 'monitorar_ativo_view' ativo.codigo %}" class="btn-monitorar">Monitorar</a>
+           
+          </td>
+        </tr>
+      {% empty %}
+        <tr>
+          <td colspan="7">Não há ativos listados.</td>
+        </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+{% endblock %}
