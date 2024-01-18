@@ -25,7 +25,7 @@ urlpatterns = [
     path('', auth_views.LoginView.as_view(template_name='ativos/login.html'), name='login'),
     path('logout/', auth_views.LogoutView.as_view(next_page='login'), name='logout'),
     path('signup/', include('ativos.urls')),  
-    path('', include('ativos.urls')),  # Inclui as URLs do aplicativo 'ativos'
+    path('', include('ativos.urls')),  
     
 
 ]

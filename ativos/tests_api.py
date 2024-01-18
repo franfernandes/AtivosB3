@@ -6,7 +6,7 @@ def teste_obter_ativos_b3():
     print(dados)
 
 def teste_obter_detalhes_ativo_yahoo():
-    ticker = "MGLU3"  # Você pode alterar para outro ticker
+    ticker = "MGLU3"  
     print(f"Testando obter_detalhes_ativo_yahoo para {ticker}...")
     detalhes = obter_detalhes_ativo_yahoo(ticker)
     print("Detalhes do Ativo:")

@@ -1,10 +1,10 @@
-<!-- monitorar_ativo_form.html -->
+
 
 {% extends 'base.html' %}
 
 {% block content %}
 
-  <!-- Exibir mensagens de feedback -->
+  
   {% if messages %}
   <ul class="messages">
     {% for message in messages %}
@@ -18,7 +18,7 @@
   <form method="post">
     {% csrf_token %}
     {% for field in form %}
-      <!-- Verifica se o campo é a frequência de monitoramento -->
+    
       {% if field.name == 'frequencia_monitoramento' %}
         <p>
           <label for="{{ field.id_for_label }}">Frequência de Monitoramento (em minutos):</label>

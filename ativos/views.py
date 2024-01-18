@@ -1,5 +1,6 @@
 from django.shortcuts import render,get_object_or_404, redirect, render
 from ativos.api import obter_ativos_b3, obter_detalhes_ativo_yahoo
+from ativos.scheduler import agendar_tarefa_monitoramento
 from .models import Ativo  
 from django.contrib.auth import login
 from django.contrib.auth.forms import UserCreationForm
@@ -22,10 +23,10 @@ from .models import Ativo
 
 import logging
 
-# Crie ou obtenha um logger
-logger = logging.getLogger(__name__)  # __name__ dá a cada logger um nome único, neste caso, 'ativos.views'
 
-# Use o logger
+logger = logging.getLogger(__name__)  
+
+
 logger.info('Informação inicializada.')
 
 
@@ -35,7 +36,7 @@ def signup(request):
         if form.is_valid():
             user = form.save()
             login(request, user)
-            return redirect('login')  # Redireciona para a página inicial após o cadastro
+            return redirect('login')  
     else:
         form = UserCreationForm()
     return render(request, 'ativos/signup.html', {'form': form})
@@ -81,7 +82,7 @@ def monitorar_ativo_view(request, codigo):
         ativo.usuarios_monitorando.add(request.user)
         ativo.save()
         messages.success(request, 'Ativo adicionado ao monitoramento com sucesso.')
-        # Mudança aqui: redirecionar para o formulário de limites após adicionar o monitoramento
+        
         return redirect('monitorar_ativo_form', codigo=codigo)
 
 
@@ -89,24 +90,24 @@ def monitorar_ativo_view(request, codigo):
 
 
 def acompanhamento_ativo(request, pk):
-    # Esta view lida com o acompanhamento de um ativo específico.
-    # Você pode usar Ativo.objects.get(pk=pk) ou uma consulta similar
+    
+    
     try:
         ativo = Ativo.objects.get(pk=pk)
     except Ativo.DoesNotExist:
-        # Trate o caso em que o ativo não existe
+        
         ativo = None
     return render(request, 'ativos/acompanhamento_ativo.html', {'ativo': ativo})
 
 
 def obter_e_listar_ativos_b3(request):
-    # Esta view obtém os ativos da B3 e os lista
-    # Essa função deve ser chamada periodicamente para atualizar a lista de ativos
+    
+    
     ativos = obter_ativos_b3()
     for ativo_data in ativos:
         Ativo.objects.update_or_create(
             codigo=ativo_data['codigo'],
-            defaults=ativo_data  # Aqui você pode precisar ajustar para mapear os dados corretamente
+            defaults=ativo_data  
         )
     return redirect('listar_ativos_usuario')
 
@@ -118,7 +119,9 @@ def monitorar_ativo_form_view(request, codigo):
     if request.method == 'POST':
         form = AtivoMonitoramentoForm(request.POST, instance=ativo)
         if form.is_valid():
-            form.save()
+            ativo_monitorado = form.save()
+            
+            agendar_tarefa_monitoramento(ativo_monitorado, ativo_monitorado.frequencia_monitoramento)
             messages.success(request, 'Configurações de monitoramento salvas com sucesso.')
             return redirect('listar_ativos')
     else:

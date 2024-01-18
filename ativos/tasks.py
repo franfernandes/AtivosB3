@@ -3,7 +3,7 @@ from django.core.mail import send_mail
 from .models import Ativo
 import yfinance as yf
 
-# Configuração do Logger
+
 logger = logging.getLogger(__name__)
 
 def obter_cotacao_atual(ticker):
@@ -53,7 +53,7 @@ def monitorar_ativo_e_enviar_email():
 
         if ativo.limiar_compra and cotacao_atual <= ativo.limiar_compra:
             for usuario in ativo.usuarios_monitorando.all():
-                email_destino = usuario.username  # Usando username como e-mail
+                email_destino = usuario.username  
                 print(f"Preparando para enviar email de compra para {email_destino}")
                 try:
                     send_mail(
@@ -68,7 +68,7 @@ def monitorar_ativo_e_enviar_email():
                 except Exception as e:
                     logger.error(f"Erro ao enviar email de compra para {email_destino}: {e}")
 
-        # Repita o processo acima para a lógica de envio de e-mails de venda...
+        
 
         if emails_enviados:
             logger.info(f"Emails enviados para {', '.join(emails_enviados)} sobre o ativo {ativo.codigo}")

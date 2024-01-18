@@ -13,7 +13,7 @@ class Ativo(models.Model):
     limiar_compra = models.DecimalField(max_digits=10, decimal_places=2, null=True, blank=True)
     limiar_venda = models.DecimalField(max_digits=10, decimal_places=2, null=True, blank=True)
     usuarios_monitorando = models.ManyToManyField(User, related_name='ativos_monitorados')
-    frequencia_monitoramento = models.IntegerField(default=60)  # Em minutos
+    frequencia_monitoramento = models.IntegerField(default=2)  # Em minutos
     ultimo_check = models.DateTimeField(null=True, blank=True)
 
     def __str__(self):

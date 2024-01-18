@@ -1,27 +1,48 @@
-# scheduler.py
+
+import logging
 from apscheduler.schedulers.background import BackgroundScheduler
-# scheduler.py
 
-from apscheduler.schedulers.background import BackgroundScheduler
-from apscheduler.executors.pool import ThreadPoolExecutor, ProcessPoolExecutor
-from django.conf import settings
 
-from ativos.tasks import monitorar_ativo_e_enviar_email
+logger = logging.getLogger(__name__)
 
-executors = {
-    'default': ThreadPoolExecutor(10),
-    'processpool': ProcessPoolExecutor(5)
-}
 
-job_defaults = {
-    'coalesce': False,
-    'max_instances': 1
-}
+scheduler = BackgroundScheduler()
 
-scheduler = BackgroundScheduler(executors=executors, job_defaults=job_defaults)
+def agendar_tarefa_monitoramento(ativo, frequencia):
+    
+    from django_apscheduler.jobstores import DjangoJobStore
+    from ativos.tasks import monitorar_ativo_e_enviar_email
+    from django_apscheduler.models import DjangoJobExecution
 
-def start():
-    scheduler.add_job(monitorar_ativo_e_enviar_email, 'interval', minutes=2)  # Executa a cada 2 minutos
-    scheduler.start()  # Inicia o scheduler após adicionar os jobs
+    
+    job_id = f"monitorar_ativo_{ativo.codigo}"
 
-# A função start deve ser chamada de algum lugar que seja executado quando o Django estiver pronto.
+    try:
+        
+        job_existente = scheduler.get_job(job_id=job_id, jobstore="default")
+
+        
+        if job_existente:
+            scheduler.remove_job(job_id=job_id, jobstore="default")
+            logger.info(f"Job existente para o ativo {ativo.codigo} removido.")
+
+        
+        scheduler.add_job(
+            monitorar_ativo_e_enviar_email, 
+            'interval', 
+            minutes=frequencia, 
+            id=job_id, 
+            replace_existing=True
+        )
+        logger.info(f"Job agendado para o ativo {ativo.codigo} com frequência de {frequencia} minutos.")
+
+        
+        if not scheduler.running:
+            scheduler.start()
+            logger.info("Agendador iniciado.")
+    
+    except Exception as e:
+        logger.error(f"Erro ao agendar job para o ativo {ativo.codigo}: {e}")
+
+
+
