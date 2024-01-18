@@ -150,4 +150,30 @@ def monitorar_ativo_form_view(request, codigo):
         form = AtivoMonitoramentoForm(instance=ativo)
     return render(request, 'ativos/monitorar_ativo_form.html', {'form': form, 'ativo': ativo})
 
+@login_required
+def meus_ativos(request):
+    # Substitua AtivoUsuarioMonitorando pelo nome correto do seu modelo de relacionamento
+    ativos_monitorados_ids = request.user.ativo_usuarios_monitorando.values_list('ativo_id', flat=True)
+    ativos_monitorados = Ativo.objects.filter(id__in=ativos_monitorados_ids)
+    return render(request, 'ativos/meus_ativos.html', {'ativos_monitorados': ativos_monitorados})
 
+@login_required
+def editar_ativo_view(request, codigo):
+    ativo = get_object_or_404(Ativo, codigo=codigo, usuarios_monitorando=request.user)
+    if request.method == 'POST':
+        form = AtivoMonitoramentoForm(request.POST, instance=ativo)
+        if form.is_valid():
+            form.save()
+            messages.success(request, 'As configurações de monitoramento foram atualizadas.')
+            return redirect('meus_ativos')
+    else:
+        form = AtivoMonitoramentoForm(instance=ativo)
+    return render(request, 'ativos/editar_ativo_form.html', {'form': form, 'ativo': ativo})
+
+from django.contrib.auth.decorators import login_required
+from django.shortcuts import render
+
+@login_required
+def meus_ativos_view(request):
+    ativos_monitorados = request.user.ativos_monitorados.all()
+    return render(request, 'ativos/meus_ativos.html', {'ativos_monitorados': ativos_monitorados})

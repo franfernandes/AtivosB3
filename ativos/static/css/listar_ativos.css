@@ -69,11 +69,11 @@ td {
     border-bottom: 1px solid #016c7a;
 }
 positivo, .positivo i {
-    color: green; /* Cor para valores positivos */
+    color: green;
 }
 
 .negativo, .negativo i {
-    color: red; /* Cor para valores negativos */
+    color: red;
 }
 
 tr:last-child td {
@@ -106,9 +106,9 @@ tr:hover td:last-child {
     background-color: #005f73;
 }
 .btn-monitorado {
-    padding: 5px 15px; /* Espaçamento interno do botão */
-    background-color: #4CAF50; /* Cor de fundo para o estado "Monitorado" */
-    color: white; /* Cor do texto do botão */
-    text-decoration: none; /* Remove sublinhado do link */
-    border-radius: 5px; /* Bordas arredondadas do botão */
+    padding: 5px 15px;
+    background-color: #4CAF50;
+    color: white;
+    text-decoration: none;
+    border-radius: 5px;
 }

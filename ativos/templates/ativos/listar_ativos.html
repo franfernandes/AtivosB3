@@ -10,6 +10,7 @@
   <div class= "user" style="text-align: right;">
     {% if request.user.is_authenticated %}
       Olá, {{ request.user.get_full_name|default:request.user.username }}!
+      <a href="{% url 'meus_ativos' %}" class="btn btn-primary">Meus Ativos</a>
       <form action="{% url 'logout' %}" method="post">
         {% csrf_token %}
         <button type="submit">Logout</button>

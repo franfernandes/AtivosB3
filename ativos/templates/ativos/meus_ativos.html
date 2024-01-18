@@ -1,0 +1,24 @@
+{% extends 'ativos/base.html' %}
+{% load static %}
+{% block content %}
+<div class="container">
+  <h2>Meus Ativos Monitorados</h2>
+  <div class="card-container">
+    {% for ativo in ativos_monitorados %}
+    <div class="card">
+      <h3>{{ ativo.nome }}</h3>
+      <p>Código: {{ ativo.codigo }}</p>
+      <p>Último Fechamento: R$ {{ ativo.fechamento }}</p>
+      <p>Abertura: R$ {{ ativo.abertura }}</p>
+      <p>Cotação: R$ {{ ativo.cotacao }}</p>
+      <p>Variação Percentual: {{ ativo.variacao_percentual }}%</p>
+      <!-- Links para editar e desmonitorar -->
+      <a href="{% url 'editar_ativo' ativo.codigo %}">Editar</a>
+      <a href="{% url 'desmonitorar_ativo_view' ativo.codigo %}">Desmonitorar</a>
+    </div>
+    {% empty %}
+    <p>Não há ativos sendo monitorados.</p>
+    {% endfor %}
+  </div>
+</div>
+{% endblock %}
