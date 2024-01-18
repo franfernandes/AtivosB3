@@ -1,33 +1,35 @@
-{% load static %}
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
+    {% load static %}
     <meta charset="UTF-8">
-    <title>{% block title %}Cotação de Ativos da B3{% endblock %}</title>
+    <title>{% block title %}Cotação de Ativos da B3{% endblock title %}</title>
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
-    <link href="{% static 'css/styles.css' %}" rel="stylesheet">
+    <link href="{% static '/css/listar_ativos.css' %}" rel="stylesheet">
+    <link href="{% static '/css/styles.css' %}" rel="stylesheet">
     
-    {% block extra_css %}{% endblock %}
+    {% block extra_css %}
+    {% endblock extra_css %}
 </head>
 <body>
     <header>
-        
+        <!-- Conteúdo do cabeçalho -->
     </header>
     
     <main>
         {% block content %}
-     
-        {% endblock %}
+        <!-- Conteúdo principal será inserido aqui pelas templates filhas -->
+        {% endblock content %}
     </main>
     
     <footer>
-       
+        <!-- Conteúdo do rodapé -->
     </footer>
     
     {% block extra_js %}
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.9/dist/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-    {% endblock %}
+    {% endblock extra_js %}
 </body>
 </html>

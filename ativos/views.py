@@ -46,7 +46,7 @@ def signup(request):
 @login_required
 def listar_ativos(request):
     dados_b3 = obter_ativos_b3()
-    codigos_ativos = dados_b3.get('stocks', [])[:40]
+    codigos_ativos = dados_b3.get('stocks', [])[:10]
     detalhes_ativos = []
     for codigo in codigos_ativos:
         try:

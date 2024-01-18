@@ -1,0 +1,56 @@
+/* static/css/ativos/listar_ativos.css */
+body {
+    background-color: #0A1527; /* Cor de fundo da página */
+    color: #ffffff; /* Cor do texto */
+    font-family: 'Arial', sans-serif; /* Fonte padrão */
+}
+.user{
+  margin: 30px;
+}
+.classe_tabela {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh; /* Use altura mínima de 100% da altura da janela de visualização para centralizar verticalmente também */
+    flex-direction: column; /* Orienta os itens em coluna */
+}
+table {
+   
+      
+    width: 80%; /* Largura da tabela */
+   
+    margin-top: 20px; /* Espaçamento acima da tabela */
+}
+
+table, th, td {
+    border-radius: 5px;
+    border: 1px solid #016c7a; /* Bordas da tabela e células */
+}
+
+th {
+    background-color: #0B1E31; /* Cor de fundo do cabeçalho da tabela */
+    color: white; /* Cor do texto do cabeçalho */
+    padding: 10px; /* Espaçamento interno do cabeçalho */
+}
+
+td {
+    text-align: center; /* Alinha o texto das células ao centro */
+    padding: 10px; /* Espaçamento interno das células */
+    text-align: left; /* Alinhamento do texto nas células */
+}
+tr:hover {
+    background-color: rgba(245, 245, 245, 0.1); /* Fundo cinza claro com opacidade */
+}
+
+.btn-monitorar td{
+    padding: 5px 5px; /* Espaçamento interno do botão */
+    background-color: #008cba; /* Cor de fundo do botão */
+    color: white; /* Cor do texto do botão */
+    text-decoration: none; /* Remove sublinhado do link */
+    border-radius: 5px; /* Bordas arredondadas do botão */
+}
+
+.btn-monitorar:hover {
+    background-color: #005f73; /* Cor de fundo do botão ao passar o mouse */
+}
+
