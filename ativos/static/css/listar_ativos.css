@@ -34,17 +34,46 @@ th {
     color: rgb(255, 230, 0);
     padding: 10px;
 }
+.th_fechamento{
+    text-align: left;
+}
+.th_abertura{
+    text-align: left;
+}
+.th_cotacao{
+    text-align: left;
+}
+
+
+
 .th_nome{
     text-align: left;
 }
 .td_nome{
     text-align: left;
 }
+.td_fechamento{
+    
+    text-align: left;
+}
+.td_cotacao{
+     text-align: left;
+}
+.td_abertura{
+     text-align: left;
+}
 
 td {
     text-align: center;
     padding: 10px;
     border-bottom: 1px solid #016c7a;
+}
+positivo, .positivo i {
+    color: green; /* Cor para valores positivos */
+}
+
+.negativo, .negativo i {
+    color: red; /* Cor para valores negativos */
 }
 
 tr:last-child td {
@@ -56,17 +85,17 @@ tr:hover td {
 }
 
 tr:hover td:first-child {
-    border-top-left-radius: 20px;
-    border-bottom-left-radius: 20px;
+    border-top-left-radius: 10px;
+    border-bottom-left-radius: 10px;
 }
 
 tr:hover td:last-child {
-    border-top-right-radius: 20px;
-    border-bottom-right-radius: 20px;
+    border-top-right-radius: 10px;
+    border-bottom-right-radius: 10px;
 }
 
 .btn-monitorar {
-    padding: 5px 15px;
+    padding: 5px 20px;
     background-color: #008cba;
     color: white;
     text-decoration: none;
@@ -75,4 +104,11 @@ tr:hover td:last-child {
 
 .btn-monitorar:hover {
     background-color: #005f73;
+}
+.btn-monitorado {
+    padding: 5px 15px; /* Espaçamento interno do botão */
+    background-color: #4CAF50; /* Cor de fundo para o estado "Monitorado" */
+    color: white; /* Cor do texto do botão */
+    text-decoration: none; /* Remove sublinhado do link */
+    border-radius: 5px; /* Bordas arredondadas do botão */
 }

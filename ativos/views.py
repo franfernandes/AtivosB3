@@ -52,8 +52,7 @@ def listar_ativos(request):
         try:
             detalhes = obter_detalhes_ativo_yahoo(codigo + '.SA')
             if detalhes:
-                detalhes_ativos.append(detalhes)
-                Ativo.objects.update_or_create(
+                ativo, created = Ativo.objects.update_or_create(
                     codigo=detalhes['codigo'],
                     defaults={
                         'nome': detalhes['nome'],
@@ -63,8 +62,10 @@ def listar_ativos(request):
                         'variacao_percentual': detalhes.get('variacao_percentual', 0),
                     }
                 )
+                detalhes['monitorando'] = request.user in ativo.usuarios_monitorando.all()
+                detalhes_ativos.append(detalhes)
         except Exception as e:
-            print(f"Erro ao obter detalhes para o ativo {codigo}: {e}")
+            logger.error(f"Erro ao obter detalhes para o ativo {codigo}: {e}")
     return render(request, 'ativos/listar_ativos.html', {'detalhes_ativos': detalhes_ativos})
 
 
@@ -85,6 +86,27 @@ def monitorar_ativo_view(request, codigo):
         
         return redirect('monitorar_ativo_form', codigo=codigo)
 
+@login_required
+def desmonitorar_ativo_view(request, codigo):
+    ativo = get_object_or_404(Ativo, codigo=codigo)
+    
+    if request.user in ativo.usuarios_monitorando.all():
+        ativo.usuarios_monitorando.remove(request.user)
+        ativo.save()
+        messages.success(request, 'Você não está mais monitorando este ativo.')
+    else:
+        messages.error(request, 'Você não estava monitorando este ativo.')
+    
+    return redirect('listar_ativos')
+
+@login_required
+def esta_monitorando_ativo(request, codigo):
+    ativo = get_object_or_404(Ativo, codigo=codigo)
+    
+    if request.user in ativo.usuarios_monitorando.all():
+        return True
+    else:
+        return False
 
 
 

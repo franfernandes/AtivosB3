@@ -27,9 +27,9 @@
       <tr>
         <th>Código</th>
         <th class="th_nome">Nome</th>
-        <th>Último Fechamento</th>
-        <th>Abertura</th>
-        <th>Cotação</th>
+        <th class="th_fechamento">Último Fechamento</th>
+        <th class="th_abertura">Abertura</th>
+        <th class="th_cotacao">Cotação</th>
         <th>Variação Percentual</th>
         <th>Ações</th>
       </tr>
@@ -39,14 +39,26 @@
         <tr>
           <td>{{ ativo.codigo }}</td>
           <td class="td_nome">{{ ativo.nome }}</td>
-          <td>R$ {{ ativo.fechamento }}</td>
-          <td>R$ {{ ativo.abertura }}</td>
-          <td>R$ {{ ativo.cotacao }}</td>
-          <td>{{ ativo.variacao_percentual }}%</td>
+          <td class="td_fechamento">R$ {{ ativo.fechamento |floatformat:2 }}</td>
+          <td class="td_abertura">R$ {{ ativo.abertura|floatformat:2 }}</td>
+          <td class="td_cotacao">R$ {{ ativo.cotacao|floatformat:2 }}</td>
           <td>
+          <span class="{% if ativo.variacao_percentual < 0 %}negativo{% elif ativo.variacao_percentual > 0 %}positivo{% endif %}">
+            {% if ativo.variacao_percentual < 0 %}
+              <i class="fa fa-arrow-down negativo" aria-hidden="true"></i>
+            {% elif ativo.variacao_percentual > 0 %}
+              <i class="fa fa-arrow-up positivo" aria-hidden="true"></i>
+            {% endif %}
+            {{ ativo.variacao_percentual|floatformat:2 }}%
+          </span>
+        <td>
+          {% if ativo.monitorando %}
+            <a href="{% url 'desmonitorar_ativo_view' ativo.codigo %}" class="btn-monitorado">Monitorado</a>
+          {% else %}
             <a href="{% url 'monitorar_ativo_view' ativo.codigo %}" class="btn-monitorar">Monitorar</a>
-           
-          </td>
+          {% endif %}
+        </td>
+        
         </tr>
       {% empty %}
         <tr>
