@@ -4,7 +4,8 @@ body {
     font-family: 'Arial', sans-serif;
 }
 
-.user {margin: 30px;
+.user {
+    margin: 30px;
     margin-bottom: 0;
 }
 
@@ -28,9 +29,16 @@ tr {
 }
 
 th {
+    text-align: center;
     background-color: #0B1E31;
-    color: white;
+    color: rgb(255, 230, 0);
     padding: 10px;
+}
+.th_nome{
+    text-align: left;
+}
+.td_nome{
+    text-align: left;
 }
 
 td {

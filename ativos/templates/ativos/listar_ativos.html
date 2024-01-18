@@ -2,12 +2,10 @@
 {% load static %}
 {% block head %}
 {{ block.super }}
-
 {% endblock %}
 
 
 {% block content %}
-
 
   <div class= "user" style="text-align: right;">
     {% if request.user.is_authenticated %}
@@ -28,7 +26,7 @@
     <thead>
       <tr>
         <th>Código</th>
-        <th>Nome</th>
+        <th class="th_nome">Nome</th>
         <th>Último Fechamento</th>
         <th>Abertura</th>
         <th>Cotação</th>
@@ -40,7 +38,7 @@
       {% for ativo in detalhes_ativos %}
         <tr>
           <td>{{ ativo.codigo }}</td>
-          <td>{{ ativo.nome }}</td>
+          <td class="td_nome">{{ ativo.nome }}</td>
           <td>R$ {{ ativo.fechamento }}</td>
           <td>R$ {{ ativo.abertura }}</td>
           <td>R$ {{ ativo.cotacao }}</td>
