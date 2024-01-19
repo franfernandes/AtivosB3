@@ -1,16 +1,22 @@
+.container{
+    margin-top: 5rem;
+}
+
 .card-container {
+    margin-top: 5rem;
     display: flex;
     flex-wrap: wrap;
     gap: 20px;
-    justify-content: center;
+    justify-content:space-around;
 }
 
 .card {
-    background-color: #ffffff;
-    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+    align-items: center;
+    background-color: rgba(80, 80, 80, 0.2); 
+    box-shadow: 0 4px 8px 0 rgba(0, 255, 234, 0.2);
     transition: 0.3s;
-    width: 300px; 
-    border-radius: 5px;
+    width: 300px;
+    border-radius: 5px solid #016c7a;
     padding: 16px;
 }
 
@@ -19,13 +25,24 @@
 }
 
 .card h3 {
-    font-size: 1.5em;
+    font-size: 1.8rem;
     margin-bottom: 15px;
 }
 
 .card p {
     margin: 5px 0;
-    color: #333333;
+    color: #fbfd6b;
+}
+
+.card .codigo_meus_ativos {
+    text-align: left; /* Alinha o texto à esquerda */
+    color: #7897ff; /* Cor do texto */
+    font-weight: bold; /* Peso da fonte */
+    margin-bottom: 10px; /* Espaçamento abaixo do parágrafo */align-items: flex-start;
+    font-size: 1.5rem;
+    
+    
+    
 }
 
 .card a {
@@ -41,4 +58,8 @@
 
 .card a:hover {
     background-color: #0056b3;
+}
+
+.btn-meus_ativos{
+    justify-content: space-between;
 }

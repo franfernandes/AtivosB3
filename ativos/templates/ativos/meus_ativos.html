@@ -1,5 +1,10 @@
 {% extends 'ativos/base.html' %}
 {% load static %}
+{% block head %}
+{{ block.super }}
+{% endblock %}
+
+
 {% block content %}
 <div class="container">
   <h2>Meus Ativos Monitorados</h2>
@@ -7,14 +12,22 @@
     {% for ativo in ativos_monitorados %}
     <div class="card">
       <h3>{{ ativo.nome }}</h3>
-      <p>Código: {{ ativo.codigo }}</p>
-      <p>Último Fechamento: R$ {{ ativo.fechamento }}</p>
-      <p>Abertura: R$ {{ ativo.abertura }}</p>
+      <p class="codigo_meus_ativos">{{ ativo.codigo }}</p>
       <p>Cotação: R$ {{ ativo.cotacao }}</p>
-      <p>Variação Percentual: {{ ativo.variacao_percentual }}%</p>
-      <!-- Links para editar e desmonitorar -->
-      <a href="{% url 'editar_ativo' ativo.codigo %}">Editar</a>
-      <a href="{% url 'desmonitorar_ativo_view' ativo.codigo %}">Desmonitorar</a>
+      <p>
+          <span class="{% if ativo.variacao_percentual < 0 %}negativo{% elif ativo.variacao_percentual > 0 %}positivo{% endif %}">
+            {% if ativo.variacao_percentual < 0 %}
+              <i class="fa fa-arrow-down negativo" aria-hidden="true"></i>
+            {% elif ativo.variacao_percentual > 0 %}
+              <i class="fa fa-arrow-up positivo" aria-hidden="true"></i>
+            {% endif %}
+            {{ ativo.variacao_percentual|floatformat:2 }}%
+          </span>
+        <p>
+        <div class="btn-meus_ativos">
+        <a href="{% url 'editar_ativo' ativo.codigo %}">Editar</a>
+        <a href="{% url 'desmonitorar_ativo_view' ativo.codigo %}">Desmonitorar</a>
+        </div>
     </div>
     {% empty %}
     <p>Não há ativos sendo monitorados.</p>
