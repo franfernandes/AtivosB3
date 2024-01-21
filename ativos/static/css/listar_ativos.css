@@ -4,22 +4,19 @@ body {
     font-family: 'Arial', sans-serif;
 }
 
-.user {
-    margin: 100px;
-    margin-bottom: 0;
-}
+
 
 .classe_tabela {
     display: flex;
     justify-content: center;
     align-items: center;
-    min-height: 100vh;
+    height: 100vh;
+    max-height: 600px;
     flex-direction: column;
 }
 
 table {
     width: 80%;
-    margin-top: 10px;
     border-collapse: separate;
     border-spacing: 0;
 }

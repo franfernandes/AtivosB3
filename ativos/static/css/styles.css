@@ -91,3 +91,8 @@ a.navbar-brand{
 }
 
 
+.navbar-nav span {
+    color: black; /* ou qualquer outra propriedade de estilo que você queira aplicar */
+    /* Outras propriedades de estilo */
+}
+

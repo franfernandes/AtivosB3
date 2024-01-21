@@ -29,8 +29,11 @@
 }
 
 .card h3 {
-    font-size: 1.8rem;
+    font-size:0.8rem;
     margin-bottom: 15px;
+}
+h3.h3_meus-ativos {
+    font-size: 0.8rem;
 }
 
 .card p {

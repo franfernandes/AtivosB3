@@ -3,11 +3,12 @@
     justify-content: center;
     align-items: center;
     height: 100vh;
+    max-height: 400px;
 }
 
 .card-login {
     
-    margin-top: -15rem;
+    margin-top: 15rem;
     align-items: center;
     width: 100%;
     max-width: 500px;
@@ -52,7 +53,11 @@
 }
 
 #id_username {
-    font-size: 1.7rem;
+    padding-left: 0.5rem;
+    margin-top: 0.5rem;
+    font-size: 1rem;
+    height: 2rem;
+    width: 22rem;
     margin-bottom: 1.5rem;
     border-radius: 5px;
     background-color: #b8b8b8;
@@ -61,7 +66,11 @@
 }
 
 #id_password {
-    font-size: 1.7rem;
+    padding-left: 0.5rem;
+    margin-top: 0.5rem;
+    font-size: 1rem;
+    height: 2rem;
+    width: 22rem;
     margin-bottom: 1.5rem;
     border-radius: 5px;
     background-color: #b8b8b8;

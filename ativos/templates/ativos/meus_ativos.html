@@ -11,7 +11,7 @@
   <div class="card-container">
     {% for ativo in ativos_monitorados %}
     <div class="card">
-      <h3>{{ ativo.nome }}</h3>
+      <h3 class="h3_meus_ativos">{{ ativo.nome }}</h3>
       <p class="codigo_meus_ativos">{{ ativo.codigo }}</p>
       <p>Cotação: R$ {{ ativo.cotacao }}</p>
       <p>

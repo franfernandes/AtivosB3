@@ -2,35 +2,28 @@
 {% load static %}
 {% block head %}
 {{ block.super }}
+<link href="{% static 'css/monitor.css' %}" rel="stylesheet">
 {% endblock %}
+
 {% block content %}
-
-  
-  {% if messages %}
-  <ul class="messages">
-    {% for message in messages %}
-      <li class="{{ message.tags }}">{{ message }}</li>
-    {% endfor %}
-  </ul>
-  {% endif %}
-
-  <h2>Monitorar {{ ativo.nome }}</h2>
-  R$ {{ ativo.cotacao }}
-  <form method="post">
-    {% csrf_token %}
-    {% for field in form %}
-    
-      {% if field.name == 'frequencia_monitoramento' %}
-        <p>
-          <label for="{{ field.id_for_label }}">Frequência de Monitoramento (em minutos):</label>
-          <input type="number" name="{{ field.html_name }}" value="{{ field.value }}" min="1" id="{{ field.id_for_label }}">
-        </p>
-      {% else %}
-        <p>
-          {{ field.label_tag }} {{ field }}
-        </p>
-      {% endif %}
-    {% endfor %}
-    <button type="submit">Salvar</button>
-  </form>
+<div class="container-monitor">
+    <div class="card-monitor">
+        <h2 class="card-title-monitor">Monitorar {{ ativo.nome }}</h2>
+        <div class="ativo-info">R$ {{ ativo.cotacao }}</div>
+        <form method="post" class="form-monitor">
+            {% csrf_token %}
+            {% for field in form %}
+                <div class="form-group">
+                    {% if field.name == 'frequencia_monitoramento' %}
+                        <label for="{{ field.id_for_label }}">Frequência de Monitoramento (em minutos):</label>
+                        <input type="number" name="{{ field.html_name }}" value="{{ field.value }}" min="1" id="{{ field.id_for_label }}" class="form-control">
+                    {% else %}
+                        {{ field.label_tag }} {{ field }}
+                    {% endif %}
+                </div>
+            {% endfor %}
+            <button type="submit" class="btn-primary-monitor">Salvar</button>
+        </form>
+    </div>
+</div>
 {% endblock %}
