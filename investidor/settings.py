@@ -34,6 +34,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'django_apscheduler',
+  
     'ativos',  
     
 ]
@@ -97,7 +98,7 @@ AUTH_PASSWORD_VALIDATORS = [
 ]
 
 
-
+AUTH_USER_MODEL = 'ativos.CustomUser'  
 
 LANGUAGE_CODE = 'en-us'
 

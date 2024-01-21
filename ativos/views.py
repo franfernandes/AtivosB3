@@ -27,19 +27,6 @@ def home_view(request):
     return render(request, 'ativos/home.html')
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
 @login_required
 def listar_ativos(request):
     dados_b3 = obter_ativos_b3()
@@ -184,6 +171,7 @@ def signup(request):
         if form.is_valid():
             user = form.save()
             user.email = form.cleaned_data.get('email')
+            user.first_name = form.cleaned_data.get('first_name')
             user.save()
             login(request, user)
             
