@@ -18,24 +18,26 @@
     {% endblock extra_css %}
 </head>
 <body>
+  
     <header>
         <nav class="navbar">
             <div class="navbar-container">
-                {% if request.resolver_match.url_name != 'home' %}
-                <a class="navbar-brand" href="{% url 'home' %}">
+                {% block header_content %}
+                    {% if request.resolver_match.url_name != 'home' %}
+                    <a class="navbar-brand" href="{% url 'home' %}">
                     <img src="{% static 'css/logo.png' %}" alt="Logotipo" class="logo"> B3Monitor</a>
                 {% endif %}
                 <div class="navbar-nav">
                     {% if request.user.is_authenticated %}
-                        <span class="nav-link">Olá, {{ request.user.get_full_name|default:request.user.username }}!</span>
-
-                        <a class="nav-link" href="{% url 'home' %}">Home</a>
-                        <a class="nav-link" href="{% url 'listar_ativos' %}">Listar Ativos</a>
-                        <a class="nav-link" href="{% url 'meus_ativos' %}">Meus Ativos</a>
-                        <a class="nav-link" href="{% url 'logout' %}">Logout</a>
-                    {% else %}
-                        <a class="nav-link" href="{% url 'login' %}">Login</a>
-                    {% endif %}
+                            <span class="nav-link">Olá, {{ request.user.get_full_name|default:request.user.username }}!</span>
+                            <a class="nav-link" href="{% url 'home' %}">Home</a>
+                            <a class="nav-link" href="{% url 'listar_ativos' %}">Listar Ativos</a>
+                            <a class="nav-link" href="{% url 'meus_ativos' %}">Meus Ativos</a>
+                            <a class="nav-link" href="{% url 'logout' %}">Logout</a>
+                        {% else %}
+                            <a class="nav-link" href="{% url 'login' %}">Login</a>
+                        {% endif %}
+                    {% endblock %}
                 </div>
             </div>
         </nav>

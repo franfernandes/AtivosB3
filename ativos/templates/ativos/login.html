@@ -5,6 +5,13 @@
 <link href="{% static 'css/login.css' %}" rel="stylesheet">
 {% endblock %}
 
+{% block header_content %}
+    <a class="navbar-brand" href="{% url 'home' %}">
+    <img src="{% static 'css/logo.png' %}" alt="Logotipo" class="logo"> B3Monitor</a>
+     <a class="nav-link" href="{% url 'home' %}">Home</a>
+
+{% endblock %}
+
 {% block content %}
 <div class="container-login">
     <div class="card-login">
