@@ -27,16 +27,16 @@ def home_view(request):
     return render(request, 'ativos/home.html')
 
 
-# def signup(request):
-#     if request.method == 'POST':
-#         form = UserCreationForm(request.POST)
-#         if form.is_valid():
-#             user = form.save()
-#             login(request, user)
-#             return redirect('login')  
-#     else:
-#         form = UserCreationForm()
-#     return render(request, 'ativos/signup.html', {'form': form})
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -72,16 +72,8 @@ def listar_ativos(request):
 def monitorar_ativo_view(request, codigo):
     ativo = get_object_or_404(Ativo, codigo=codigo)
     
-    if request.user in ativo.usuarios_monitorando.all():
-        print(f"Você ja está monitorando este ativo")
-        messages.error(request, 'Você já está monitorando este ativo.')
-        return redirect('listar_ativos')
-    else:
-        ativo.usuarios_monitorando.add(request.user)
-        ativo.save()
-        messages.success(request, 'Ativo adicionado ao monitoramento com sucesso.')
-        
-        return redirect('monitorar_ativo_form', codigo=codigo)
+    return redirect('monitorar_ativo_form', codigo=codigo)
+
 
 @login_required
 def desmonitorar_ativo_view(request, codigo):
@@ -135,13 +127,17 @@ def monitorar_ativo_form_view(request, codigo):
         form = AtivoMonitoramentoForm(request.POST, instance=ativo)
         if form.is_valid():
             ativo_monitorado = form.save()
+
+            
+            request.user.ativos_monitorados.add(ativo_monitorado)
             
             agendar_tarefa_monitoramento(ativo_monitorado, ativo_monitorado.frequencia_monitoramento)
-            messages.success(request, 'Configurações de monitoramento salvas com sucesso.')
+            messages.success(request, 'Ativo adicionado ao monitoramento e configurações salvas com sucesso.')
             return redirect('listar_ativos')
     else:
         form = AtivoMonitoramentoForm(instance=ativo)
     return render(request, 'ativos/monitorar_ativo_form.html', {'form': form, 'ativo': ativo})
+
 
 @login_required
 def meus_ativos(request):
@@ -179,7 +175,7 @@ class CustomLoginView(LoginView):
     
 
 
-# importe o CustomUserCreationForm no início do arquivo
+
 from .forms import CustomUserCreationForm
 
 def signup(request):
@@ -190,7 +186,7 @@ def signup(request):
             user.email = form.cleaned_data.get('email')
             user.save()
             login(request, user)
-            # Redirecione para a página inicial ou para a página que você deseja após o cadastro
+            
             return redirect('login')
     else:
         form = CustomUserCreationForm()
