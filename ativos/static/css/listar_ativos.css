@@ -5,13 +5,15 @@ body {
 }
 
 
-
+.h1_listar_ativos{
+    color: #008cba;
+}
 .classe_tabela {
     display: flex;
     justify-content: center;
     align-items: center;
     height: 100vh;
-    max-height: 600px;
+    max-height: 550px;
     flex-direction: column;
 }
 
@@ -40,7 +42,6 @@ th {
 .th_cotacao{
     text-align: left;
 }
-
 
 
 .th_nome{
