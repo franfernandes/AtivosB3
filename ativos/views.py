@@ -11,8 +11,15 @@ from .forms import AtivoMonitoramentoForm
 from .models import Ativo
 from .scheduler import agendar_tarefa_monitoramento
 
+from django.shortcuts import render
+
 logger = logging.getLogger(__name__)  
 logger.info('Informação inicializada.')
+
+
+
+def home_view(request):
+    return render(request, 'ativos/home.html')
 
 
 def signup(request):
@@ -94,11 +101,8 @@ def esta_monitorando_ativo(request, codigo):
         return False
 
 
-
-
 def acompanhamento_ativo(request, pk):
-    
-    
+        
     try:
         ativo = Ativo.objects.get(pk=pk)
     except Ativo.DoesNotExist:
@@ -108,8 +112,7 @@ def acompanhamento_ativo(request, pk):
 
 
 def obter_e_listar_ativos_b3(request):
-    
-    
+        
     ativos = obter_ativos_b3()
     for ativo_data in ativos:
         Ativo.objects.update_or_create(
@@ -162,3 +165,10 @@ from django.shortcuts import render
 def meus_ativos_view(request):
     ativos_monitorados = request.user.ativos_monitorados.all()
     return render(request, 'ativos/meus_ativos.html', {'ativos_monitorados': ativos_monitorados})
+
+from django.contrib.auth.views import LoginView
+from .forms import CustomAuthenticationForm
+
+class CustomLoginView(LoginView):
+    authentication_form = CustomAuthenticationForm
+    

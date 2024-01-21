@@ -1,0 +1,41 @@
+.home-content {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-around;
+    padding: 50px 40px;
+}
+
+.home-image {
+    width: 45%;
+}
+
+
+.home-text {
+    width: 35%;
+    text-align: justify;
+    line-height: 1.6;
+  
+   
+}
+.paragrafo-text{
+    margin-bottom: 20px;
+}
+.my-button {
+    margin-top: 20px;
+    width: 35%;
+    padding: 10px;
+    background-color: #007bff;
+    color: white;
+    text-decoration: none;
+    border: none;
+    border-radius: 5px;
+    transition: background-color 0.3s;
+}
+
+
+.my-button:hover {
+    background-color: #0056b3;
+    color: #fff;
+}
+

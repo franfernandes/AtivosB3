@@ -1,5 +1,6 @@
+
 .container{
-    margin-top: 5rem;
+    margin-top: 10rem;
 }
 
 .card-container {
@@ -13,13 +14,16 @@
 .card {
     align-items: center;
     background-color: rgba(80, 80, 80, 0.2); 
+    border-radius: 10px solid #016c7a;
     box-shadow: 0 4px 8px 0 rgba(0, 255, 234, 0.2);
     transition: 0.3s;
     width: 300px;
-    border-radius: 5px solid #016c7a;
+ 
     padding: 16px;
 }
-
+.titulo-meus-ativos {
+    margin-top: 50px; /* Ajuste o valor conforme necessário */
+}
 .card:hover {
     box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
 }
@@ -35,14 +39,15 @@
 }
 
 .card .codigo_meus_ativos {
-    text-align: left; /* Alinha o texto à esquerda */
-    color: #7897ff; /* Cor do texto */
-    font-weight: bold; /* Peso da fonte */
-    margin-bottom: 10px; /* Espaçamento abaixo do parágrafo */align-items: flex-start;
+    
+    text-align: left;
+    color: #7897ff;
+    font-weight: bold;
+    margin-bottom: 10px;align-items: flex-start;
     font-size: 1.5rem;
     
     
-    
+    margin-bottom: 10px;
 }
 
 .card a {

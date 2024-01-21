@@ -1,0 +1,23 @@
+{% extends 'ativos/base.html' %}
+{% load static %}
+
+{% block header_content %}
+    <!-- Conteúdo do cabeçalho vazio para a página inicial -->
+{% endblock %}
+
+{% block title %}
+B3Monitor – Seu Assistente Inteligente de Investimentos
+{% endblock title %}
+
+{% block content %}
+<div class="home-content">
+    <div class="home-image">
+        <img src="{% static 'css/img_home.svg' %}" alt="Imagem Ilustrativa de Investimentos">
+    </div>
+    <div class="home-text">
+        <h1 class="h1_home">Bem-vindo ao B3Monitor</h1>
+        <p class="paragrafo-text">O B3Monitor é a ferramenta definitiva para investidores que desejam acompanhar o mercado de ações da B3 com eficiência e inteligência. Configure alertas, monitore ativos e receba notificações para tomar as melhores decisões de investimento.</p>
+        <a href="{% url 'login' %}" class="my-button">Comece Agora</a>
+    </div>
+</div>
+{% endblock content %}

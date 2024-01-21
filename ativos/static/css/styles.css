@@ -1,26 +1,93 @@
-/* Reset básico de margem e padding */
+
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
 }
+html, body {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+}
 
-/* Estilos para o cabeçalho */
+main {
+    flex: 1;
+}
+
+.footer {
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    background-color: #003C44;
+    color: #ffffff;
+    text-align: center;
+    padding: 1rem 0;
+}
+
+
 .navbar {
-    background-color: #003C44; /* Ou qualquer outra cor de fundo desejada */
-    padding: 1rem 0; /* Ajuste o preenchimento conforme necessário */
+    background-color: #003C44;
+    border-radius: 10px solid #016c7a;
+    box-shadow: 0 4px 8px 0 rgba(255, 255, 255, 0.2);
+    transition: 0.3s;
+    padding: 1rem 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.navbar-container {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    max-width: 1200px;
+    margin: auto;
 }
 
 .navbar-brand {
-    color: #ff0000;
-}
-
-.nav-link {
+    display: flex;
+    align-items: center;
     color: #ffffff;
 }
 
-.nav-link:hover {
-    color: #dddddd; /* Ou qualquer outra cor de hover desejada */
+.logo {
+    width: 50px;
+    margin-right: 10px;
+}
+a.navbar-brand{
+    font-size: 2rem;
+    text-decoration: none;
 }
 
-/* Adicione outros estilos personalizados aqui */
+.navbar-nav {
+    display: flex;
+}
+
+.nav-link {
+   margin-top: auto;
+    color: #ffffff;
+    margin-left: 20px;
+    text-decoration: none;
+}
+
+.nav-link:hover {
+    color: #77aff8;
+}
+
+
+
+.footer {
+    background-color: #003C44;
+    color: #ffffff;
+    text-align: center;
+    padding: 1rem 0;
+    margin-top: 2rem;
+}
+
+.container {
+    width: 80%;
+    margin: auto;
+}
+
+
