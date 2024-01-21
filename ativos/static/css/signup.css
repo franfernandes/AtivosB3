@@ -1,13 +1,12 @@
-.container-login {
+.container-signup {
     display: flex;
     justify-content: center;
     align-items: center;
     height: 100vh;
 }
 
-.card-login {
-    
-    margin-top: -15rem;
+.card-signup {
+    margin-top: -8rem;
     align-items: center;
     width: 100%;
     max-width: 500px;
@@ -18,21 +17,19 @@
     padding: 4rem;
 }
 
-.card-login:hover {
+.card-signup:hover {
     box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
 }
 
-.card-title-login {
+.card-title-signup {
     text-align: center;
     color: #2980b9;
     margin-bottom: 1.5rem;
 }
 
-
-
-.btn-primary-login{
-   
-    align-items: center;
+.btn-primary-signup {
+    margin-top: 1.5rem;
+    justify-content: center;
     background-color: #007bff;
     color: white;
     padding: 0.5rem 3rem;
@@ -41,29 +38,47 @@
     cursor: pointer;
 }
 
-.btn-primary-login:hover {
+.btn-primary-signup:hover {
     background-color: #0056b3;
 }
 
-.text-login {
+.button-group{
+    align-items: center;
+}
 
+.text-signup {
     text-align: center;
     margin-top: 1rem;
 }
 
-#id_username {
+#id_email{
     font-size: 1.7rem;
     margin-bottom: 1.5rem;
     border-radius: 5px;
     background-color: #b8b8b8;
     box-shadow: inset 0px 2px 8px rgba(0, 255, 234, 0.705);
-   
 }
 
-#id_password {
+#id_password1{
     font-size: 1.7rem;
     margin-bottom: 1.5rem;
     border-radius: 5px;
     background-color: #b8b8b8;
     box-shadow: inset 0px 2px 8px rgba(0, 255, 234, 0.705);
+}
+#id_password2{
+    font-size: 1.7rem;
+    
+    margin-bottom: 1.5rem;
+    border-radius: 5px;
+    background-color: #b8b8b8;
+    box-shadow: inset 0px 2px 8px rgba(0, 255, 234, 0.705);
+}
+
+.form-text {
+  
+    color: #6c757d;
+    font-size: 0.875em;
+
+    margin-bottom: 1rem;
 }

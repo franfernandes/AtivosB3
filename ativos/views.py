@@ -13,6 +13,11 @@ from .scheduler import agendar_tarefa_monitoramento
 
 from django.shortcuts import render
 
+
+from django.contrib.auth.forms import UserCreationForm
+from django.shortcuts import render, redirect
+from django.contrib.auth import login
+
 logger = logging.getLogger(__name__)  
 logger.info('Informação inicializada.')
 
@@ -22,16 +27,16 @@ def home_view(request):
     return render(request, 'ativos/home.html')
 
 
-def signup(request):
-    if request.method == 'POST':
-        form = UserCreationForm(request.POST)
-        if form.is_valid():
-            user = form.save()
-            login(request, user)
-            return redirect('login')  
-    else:
-        form = UserCreationForm()
-    return render(request, 'ativos/signup.html', {'form': form})
+# def signup(request):
+#     if request.method == 'POST':
+#         form = UserCreationForm(request.POST)
+#         if form.is_valid():
+#             user = form.save()
+#             login(request, user)
+#             return redirect('login')  
+#     else:
+#         form = UserCreationForm()
+#     return render(request, 'ativos/signup.html', {'form': form})
 
 
 
@@ -172,3 +177,21 @@ from .forms import CustomAuthenticationForm
 class CustomLoginView(LoginView):
     authentication_form = CustomAuthenticationForm
     
+
+
+# importe o CustomUserCreationForm no início do arquivo
+from .forms import CustomUserCreationForm
+
+def signup(request):
+    if request.method == 'POST':
+        form = CustomUserCreationForm(request.POST)
+        if form.is_valid():
+            user = form.save()
+            user.email = form.cleaned_data.get('email')
+            user.save()
+            login(request, user)
+            # Redirecione para a página inicial ou para a página que você deseja após o cadastro
+            return redirect('login')
+    else:
+        form = CustomUserCreationForm()
+    return render(request, 'ativos/signup.html', {'form': form})

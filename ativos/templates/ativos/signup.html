@@ -2,13 +2,25 @@
 {% load static %}
 {% block head %}
 {{ block.super }}
+<link href="{% static 'css/signup.css' %}" rel="stylesheet">
 {% endblock %}
 
 {% block content %}
-  <h2>Cadastro</h2>
-  <form method="post">
-    {% csrf_token %}
-    {{ form.as_p }}
-    <button type="submit">Cadastrar</button>
-  </form>
+<div class="container-signup">
+    <div class="card-signup">
+        <h2 class="card-title-signup">Cadastro</h2>
+        <form method="post" class="form-signup">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <small class="form-text text-muted">Sua senha deve conter pelo menos 8 caracteres, incluindo um número e uma letra maiúscula.</small>
+            <div class="button-group">
+                <button type="submit" class="btn-primary-signup">Cadastrar</button>
+            </div>
+        </form>
+        <p class="text-signup" style="color: #34495e;">
+            Já tem uma conta?
+            <a href="{% url 'login' %}" style="color: #2980b9;">Entre aqui</a>
+        </p>
+    </div>
+</div>
 {% endblock %}
