@@ -9,6 +9,7 @@ body {
     color: #008cba;
 }
 .classe_tabela {
+    font-size: 0.8rem;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -18,7 +19,7 @@ body {
 }
 
 table {
-    width: 80%;
+    width: 90%;
     border-collapse: separate;
     border-spacing: 0;
 }
@@ -109,4 +110,40 @@ tr:hover td:last-child {
     color: white;
     text-decoration: none;
     border-radius: 5px;
+}
+
+.pagination {
+    text-align: center;
+    padding: 20px 0;
+}
+
+.step-links {
+    display: inline-block;
+}
+
+.step-links .btn-pag {
+    color: #ffffff;
+    background-color: #007bff;
+    border-color: #007bff;
+    padding: 5px 10px;
+    text-decoration: none;
+    border-radius: 5px;
+    margin: 0 2px;
+    transition: background-color 0.3s ease;
+}
+
+.step-links .btn-pag:hover {
+    background-color: #0056b3;
+    border-color: #004080;
+}
+
+.step-links .current {
+    padding: 5px 10px;
+    margin: 0 5px;
+    background: #00b49c;
+    border-radius: 5px;
+}
+
+.step-links .btn-first, .step-links .btn-last {
+    font-weight: bold;
 }

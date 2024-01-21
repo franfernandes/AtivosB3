@@ -4,11 +4,9 @@
 {{ block.super }}
 {% endblock %}
 
-
 {% block content %}
 
- 
- <div class="classe_tabela"> 
+<div class="classe_tabela"> 
   <h2 class="h1_listar_ativos">Cotação de Ativos da B3</h2>
   <table>
     <thead>
@@ -23,13 +21,13 @@
       </tr>
     </thead>
     <tbody>
-      {% for ativo in detalhes_ativos %}
+      {% for ativo in page_obj %}
         <tr>
           <td>{{ ativo.codigo }}</td>
           <td class="td_nome">{{ ativo.nome }}</td>
-          <td class="td_fechamento">R$ {{ ativo.fechamento |floatformat:2 }}</td>
-          <td class="td_abertura">R$ {{ ativo.abertura|floatformat:2 }}</td>
-          <td class="td_cotacao">R$ {{ ativo.cotacao|floatformat:2 }}</td>
+          <td class="td_fechamento">R$ {{ ativo.fechamento | floatformat:2 }}</td>
+          <td class="td_abertura">R$ {{ ativo.abertura | floatformat:2 }}</td>
+          <td class="td_cotacao">R$ {{ ativo.cotacao | floatformat:2 }}</td>
           <td>
           <span class="{% if ativo.variacao_percentual < 0 %}negativo{% elif ativo.variacao_percentual > 0 %}positivo{% endif %}">
             {% if ativo.variacao_percentual < 0 %}
@@ -37,8 +35,9 @@
             {% elif ativo.variacao_percentual > 0 %}
               <i class="fa fa-arrow-up positivo" aria-hidden="true"></i>
             {% endif %}
-            {{ ativo.variacao_percentual|floatformat:2 }}%
+            {{ ativo.variacao_percentual | floatformat:2 }}%
           </span>
+        </td>
         <td>
           {% if ativo.monitorando %}
             <a href="{% url 'desmonitorar_ativo_view' ativo.codigo %}" class="btn-monitorado">Monitorado</a>
@@ -46,7 +45,6 @@
             <a href="{% url 'monitorar_ativo_view' ativo.codigo %}" class="btn-monitorar">Monitorar</a>
           {% endif %}
         </td>
-        
         </tr>
       {% empty %}
         <tr>
@@ -55,6 +53,24 @@
       {% endfor %}
     </tbody>
   </table>
-  </div>
-  
+
+  <!-- Controles de Paginação -->
+  <div class="pagination">
+    <span class="step-links">
+        {% if page_obj.has_previous %}
+            <a href="?page=1" class="btn-pag btn-first">&laquo; Primeira</a>
+            <a href="?page={{ page_obj.previous_page_number }}" class="btn-pag btn-prev">Anterior</a>
+        {% endif %}
+
+        <span class="current">
+            Página {{ page_obj.number }} de {{ page_obj.paginator.num_pages }}.
+        </span>
+
+        {% if page_obj.has_next %}
+            <a href="?page={{ page_obj.next_page_number }}" class="btn-pag btn-next">Próxima</a>
+            <a href="?page={{ page_obj.paginator.num_pages }}" class="btn-pag btn-last">Última &raquo;</a>
+        {% endif %}
+    </span>
+</div>
+
 {% endblock %}

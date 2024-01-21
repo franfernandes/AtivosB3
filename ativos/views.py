@@ -1,24 +1,18 @@
 import logging
+from django.core.paginator import Paginator
 
 from django.contrib import messages
 from django.contrib.auth import login
 from django.contrib.auth.decorators import login_required
-from django.contrib.auth.forms import UserCreationForm
+from django.contrib.auth.views import LoginView
 from django.shortcuts import get_object_or_404, redirect, render
 
 from .api import obter_ativos_b3, obter_detalhes_ativo_yahoo
-from .forms import AtivoMonitoramentoForm
+from .forms import AtivoMonitoramentoForm, CustomUserCreationForm, CustomAuthenticationForm
 from .models import Ativo
 from .scheduler import agendar_tarefa_monitoramento
 
-from django.shortcuts import render
-
-
-from django.contrib.auth.forms import UserCreationForm
-from django.shortcuts import render, redirect
-from django.contrib.auth import login
-
-logger = logging.getLogger(__name__)  
+logger = logging.getLogger(__name__)
 logger.info('Informação inicializada.')
 
 
@@ -30,7 +24,7 @@ def home_view(request):
 @login_required
 def listar_ativos(request):
     dados_b3 = obter_ativos_b3()
-    codigos_ativos = dados_b3.get('stocks', [])[:10]
+    codigos_ativos = dados_b3.get('stocks', [])[:50]  
     detalhes_ativos = []
     for codigo in codigos_ativos:
         try:
@@ -50,7 +44,13 @@ def listar_ativos(request):
                 detalhes_ativos.append(detalhes)
         except Exception as e:
             logger.error(f"Erro ao obter detalhes para o ativo {codigo}: {e}")
-    return render(request, 'ativos/listar_ativos.html', {'detalhes_ativos': detalhes_ativos})
+
+    
+    paginator = Paginator(detalhes_ativos, 10)  
+    page_number = request.GET.get('page')
+    page_obj = paginator.get_page(page_number)
+
+    return render(request, 'ativos/listar_ativos.html', {'page_obj': page_obj})
 
 
 
@@ -146,8 +146,7 @@ def editar_ativo_view(request, codigo):
         form = AtivoMonitoramentoForm(instance=ativo)
     return render(request, 'ativos/editar_ativo_form.html', {'form': form, 'ativo': ativo})
 
-from django.contrib.auth.decorators import login_required
-from django.shortcuts import render
+
 
 @login_required
 def meus_ativos_view(request):
@@ -160,10 +159,6 @@ from .forms import CustomAuthenticationForm
 class CustomLoginView(LoginView):
     authentication_form = CustomAuthenticationForm
     
-
-
-
-from .forms import CustomUserCreationForm
 
 def signup(request):
     if request.method == 'POST':
