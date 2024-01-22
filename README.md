@@ -33,8 +33,7 @@ O B3Monitor é uma aplicação web desenvolvida para facilitar o monitoramento d
 
 1 - Clone o Repositório
     
-    git clone https://seu-repositorio-aqui.git
-    
+    git clone https://github.com/franfernandes/AtivosB3.git
 
 2 - Crie e Ative o Ambiente Virtual 
     
