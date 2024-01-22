@@ -22,7 +22,7 @@ main {
     background-color: #003C44;
     color: #ffffff;
     text-align: center;
-    padding: 1rem 0;
+    padding: 0.5rem 0;
 }
 
 
@@ -78,21 +78,24 @@ a.navbar-brand{
 
 
 .footer {
+    
     background-color: #003C44;
     color: #ffffff;
     text-align: center;
-    padding: 1rem 0;
-    margin-top: 2rem;
+    padding: 0.3rem 0;
+    margin-top: 1rem;
 }
 
 .container {
+    justify-content: center;
+    align-items: center;
     width: 80%;
     margin: auto;
 }
 
 
 .navbar-nav span {
-    color:#77aff8
+    color:#77aff8;
     margin-right: 2.5rem;
    
 }
@@ -107,4 +110,32 @@ a.navbar-brand{
     border-radius: 5px;
     background-color: #b8b8b8;
     box-shadow: inset 0px 2px 8px rgba(0, 255, 234, 0.705);
+}
+
+
+.footer {
+    /* ... */
+    display: flex;
+    justify-content: center; /* Centraliza o conteúdo do rodapé */
+    align-items: center;
+}
+
+.social-links {
+    display: flex; /* Alinha os ícones horizontalmente */
+    align-items: center;
+    margin-right: 15px; /* Espaçamento à direita de cada ícone */
+}
+
+.social-links a {
+    color: #ffffff; /* Cor branca para os ícones */
+    margin-right: 15px; /* Espaçamento entre os ícones */
+    text-decoration: none; /* Remove o sublinhado do link */
+}
+
+.social-links a:last-child {
+    margin-right: 0; /* Remove o espaçamento à direita do último ícone */
+}
+
+.social-links a:hover {
+    color: #ccc; /* Cor ao passar o mouse sobre o ícone */
 }

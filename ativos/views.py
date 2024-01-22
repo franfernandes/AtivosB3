@@ -55,6 +55,7 @@ def listar_ativos(request):
 
 
 
+
 @login_required
 def monitorar_ativo_view(request, codigo):
     ativo = get_object_or_404(Ativo, codigo=codigo)
@@ -174,3 +175,4 @@ def signup(request):
     else:
         form = CustomUserCreationForm()
     return render(request, 'ativos/signup.html', {'form': form})
+

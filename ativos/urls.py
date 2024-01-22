@@ -23,6 +23,7 @@ urlpatterns = [
     path('desmonitorar/<str:codigo>/', desmonitorar_ativo_view, name='desmonitorar_ativo_view'),
     path('meus_ativos/', views.meus_ativos_view, name='meus_ativos'),
     path('editar_ativo/<str:codigo>/', views.editar_ativo_view, name='editar_ativo'),
+    
 
 
 ]
