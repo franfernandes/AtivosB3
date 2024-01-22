@@ -1,4 +1,3 @@
-
 * {
     margin: 0;
     padding: 0;
@@ -22,7 +21,11 @@ main {
     background-color: #003C44;
     color: #ffffff;
     text-align: center;
-    padding: 0.5rem 0;
+    padding: 0.3rem 0;
+    margin-top:0.5rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 
@@ -77,15 +80,6 @@ a.navbar-brand{
 
 
 
-.footer {
-    
-    background-color: #003C44;
-    color: #ffffff;
-    text-align: center;
-    padding: 0.3rem 0;
-    margin-top: 1rem;
-}
-
 .container {
     justify-content: center;
     align-items: center;
@@ -113,29 +107,30 @@ a.navbar-brand{
 }
 
 
-.footer {
-    /* ... */
-    display: flex;
-    justify-content: center; /* Centraliza o conteúdo do rodapé */
+.container {
+    justify-content: center;
     align-items: center;
+    width: 70%;
+    margin: auto;
 }
 
 .social-links {
-    display: flex; /* Alinha os ícones horizontalmente */
+    justify-content: center;
+    display: flex;
     align-items: center;
-    margin-right: 15px; /* Espaçamento à direita de cada ícone */
+    margin-right: 15px;
 }
 
 .social-links a {
-    color: #ffffff; /* Cor branca para os ícones */
-    margin-right: 15px; /* Espaçamento entre os ícones */
-    text-decoration: none; /* Remove o sublinhado do link */
+    color: #ffffff;
+    margin-right: 15px;
+    text-decoration: none;
 }
 
 .social-links a:last-child {
-    margin-right: 0; /* Remove o espaçamento à direita do último ícone */
+    margin-right: 0;
 }
 
 .social-links a:hover {
-    color: #ccc; /* Cor ao passar o mouse sobre o ícone */
+    color: #ccc;
 }
