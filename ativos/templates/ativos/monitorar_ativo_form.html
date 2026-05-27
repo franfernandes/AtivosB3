@@ -1,0 +1,30 @@
+{% extends 'ativos/base.html' %}
+{% load static %}
+{% block extra_css %}
+<link href="{% static 'css/monitor.css' %}" rel="stylesheet">
+{% endblock %}
+
+{% block content %}
+<div class="container-monitor">
+    <div class="card-monitor">
+        <h2 class="card-title-monitor">Monitorar {{ ativo.nome }}</h2>
+        <div class="ativo-info">R$ {{ ativo.cotacao }}</div>
+        <form method="post" class="form-monitor">
+            {% csrf_token %}
+            {{ form.non_field_errors }}
+            {% for field in form %}
+                <div class="form-group">
+                    {% if field.name == 'frequencia_monitoramento' %}
+                        <label for="{{ field.id_for_label }}">Frequência de Monitoramento (em minutos):</label>
+                        <input type="number" name="{{ field.html_name }}" value="{{ field.value }}" min="1" id="{{ field.id_for_label }}" class="form-control">
+                    {% else %}
+                        {{ field.label_tag }} {{ field }}
+                    {% endif %}
+                    {{ field.errors }}
+                </div>
+            {% endfor %}
+            <button type="submit" class="btn-primary-monitor">Salvar</button>
+        </form>
+    </div>
+</div>
+{% endblock %}

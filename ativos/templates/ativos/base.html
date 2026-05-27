@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    {% load static %}
+   
+
+    <meta charset="UTF-8">
+    <title>{% block title %}Cotação de Ativos da B3{% endblock title %}</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link href="{% static 'css/styles.css' %}" rel="stylesheet">
+
+    {% block extra_css %}
+    {% endblock extra_css %}
+</head>
+<body>
+  
+    <header>
+        <nav class="navbar">
+            <div class="navbar-container">
+                {% block header_content %}
+                    <a class="navbar-brand" href="{% url 'home' %}">
+                    <img src="{% static 'css/logo.png' %}" alt="Logotipo" class="logo"> B3Monitor</a>
+                <div class="navbar-nav">
+                    <a class="nav-link" href="{% url 'home' %}">Home</a>
+                    {% if request.user.is_authenticated %}
+                          
+                            <span class="nav-link">Olá, {{ request.user.first_name|default:"Usuário" }}!</span>
+                            <a class="nav-link" href="{% url 'listar_ativos' %}">Listar Ativos</a>
+                            <a class="nav-link" href="{% url 'meus_ativos' %}">Meus Ativos</a>
+                            <form method="post" action="{% url 'logout' %}" class="acao-inline">
+                                {% csrf_token %}
+                                <button type="submit" class="nav-link nav-button">Logout</button>
+                            </form>
+                        {% else %}
+                            <a class="nav-link" href="{% url 'login' %}">Login</a>
+                        {% endif %}
+                    {% endblock %}
+                </div>
+            </div>
+        </nav>
+    </header>
+    
+    <main>
+        {% if messages %}
+            <div class="messages" role="alert">
+                {% for message in messages %}
+                    <p class="message {{ message.tags }}">{{ message }}</p>
+                {% endfor %}
+            </div>
+        {% endif %}
+        {% block content %}
+        <!-- Conteúdo principal será inserido aqui pelas templates filhas -->
+        {% endblock content %}
+    </main>
+    
+    <footer class="footer">
+        <div class="container">
+          
+            <div class="social-links">
+           
+                <a href="https://github.com/franfernandes" target="_blank" title="GitHub">
+                    <i class="fab fa-github fa-2x"></i>
+                </a>
+              
+                <a href="https://www.linkedin.com/in/francielle-fernandes-rodrigues/" target="_blank" title="LinkedIn">
+                    <i class="fab fa-linkedin fa-2x"></i>
+                </a>
+            </div>
+        </div>
+    </footer>
+    
+    {% block extra_js %}
+    <!-- Scripts JS se necessário -->
+    {% endblock extra_js %}
+</body>
+</html>

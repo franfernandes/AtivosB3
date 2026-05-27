@@ -1,0 +1,40 @@
+{% extends 'ativos/base.html' %}
+{% load static %}
+{% block extra_css %}
+<link href="{% static 'css/meus_ativos.css' %}" rel="stylesheet">
+{% endblock %}
+
+
+{% block content %}
+<div class="container">
+  <h2 class="titulo-meus-ativos">Meus Ativos Monitorados</h2>
+  <div class="card-container">
+    {% for ativo in ativos_monitorados %}
+    <div class="card">
+      <h3 class="h3_meus_ativos">{{ ativo.nome }}</h3>
+      <p class="codigo_meus_ativos">{{ ativo.codigo }}</p>
+      <p>Cotação: R$ {{ ativo.cotacao }}</p>
+      <p>
+          <span class="{% if ativo.variacao_percentual < 0 %}negativo{% elif ativo.variacao_percentual > 0 %}positivo{% endif %}">
+            {% if ativo.variacao_percentual < 0 %}
+              <i class="fa fa-arrow-down negativo" aria-hidden="true"></i>
+            {% elif ativo.variacao_percentual > 0 %}
+              <i class="fa fa-arrow-up positivo" aria-hidden="true"></i>
+            {% endif %}
+            {{ ativo.variacao_percentual|floatformat:2 }}%
+          </span>
+        <p>
+        <div class="btn-meus_ativos">
+        <a href="{% url 'editar_ativo' ativo.codigo %}">Editar</a>
+        <form method="post" action="{% url 'desmonitorar_ativo_view' ativo.codigo %}" class="acao-inline">
+          {% csrf_token %}
+          <button type="submit">Desmonitorar</button>
+        </form>
+        </div>
+    </div>
+    {% empty %}
+    <p>Não há ativos sendo monitorados.</p>
+    {% endfor %}
+  </div>
+</div>
+{% endblock %}

@@ -1,0 +1,158 @@
+body {
+    background-color: #0A1527;
+    color: #ffffff;
+    font-family: 'Arial', sans-serif;
+}
+
+
+.h1_listar_ativos{
+    color: #008cba;
+}
+.classe_tabela {
+    font-size: 0.8rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: calc(100vh - 180px);
+    overflow-x: auto;
+    padding: 2rem 1rem;
+    flex-direction: column;
+}
+
+table {
+    min-width: 760px;
+    width: 90%;
+    border-collapse: separate;
+    border-spacing: 0;
+}
+
+tr {
+    background-color: transparent;
+}
+
+th {
+    text-align: center;
+    background-color: #0B1E31;
+    color: rgb(255, 230, 0);
+    padding: 10px;
+}
+.th_fechamento{
+    text-align: left;
+}
+.th_abertura{
+    text-align: left;
+}
+.th_cotacao{
+    text-align: left;
+}
+
+
+.th_nome{
+    text-align: left;
+}
+.td_nome{
+    text-align: left;
+}
+.td_fechamento{
+    
+    text-align: left;
+}
+.td_cotacao{
+     text-align: left;
+}
+.td_abertura{
+     text-align: left;
+}
+
+td {
+    text-align: center;
+    padding: 10px;
+    border-bottom: 1px solid #016c7a;
+}
+positivo, .positivo i {
+    color: green;
+}
+
+.negativo, .negativo i {
+    color: red;
+}
+
+tr:last-child td {
+    border-bottom: none;
+}
+
+tr:hover td {
+    background-color: rgba(245, 245, 245, 0.1);
+}
+
+tr:hover td:first-child {
+    border-top-left-radius: 10px;
+    border-bottom-left-radius: 10px;
+}
+
+tr:hover td:last-child {
+    border-top-right-radius: 10px;
+    border-bottom-right-radius: 10px;
+}
+
+.btn-monitorar {
+    padding: 5px 20px;
+    background-color: #008cba;
+    color: white;
+    text-decoration: none;
+    border-radius: 5px;
+}
+
+.btn-monitorar:hover {
+    background-color: #005f73;
+}
+.btn-monitorado {
+    padding: 5px 15px;
+    background-color: #4CAF50;
+    color: white;
+    text-decoration: none;
+    border-radius: 5px;
+    border: none;
+    cursor: pointer;
+}
+
+.acao-inline {
+    display: inline;
+}
+
+.pagination {
+    text-align: center;
+    padding: 20px 0;
+}
+
+.step-links {
+    display: inline-block;
+}
+
+.step-links .btn-pag {
+    color: #ffffff;
+    background-color: #007bff;
+    border-color: #007bff;
+    padding: 5px 10px;
+    text-decoration: none;
+    border-radius: 5px;
+    margin: 0 2px;
+    transition: background-color 0.3s ease;
+}
+
+.step-links .btn-pag:hover {
+    background-color: #0056b3;
+    border-color: #004080;
+}
+
+.step-links .current {
+    padding: 5px 10px;
+    margin: 0 5px;
+    background: #00b49c;
+    border-radius: 5px;
+}
+
+.step-links .btn-first, .step-links .btn-last {
+    font-weight: bold;
+}
+

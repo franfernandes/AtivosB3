@@ -1,0 +1,65 @@
+.container-editar-ativo {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: calc(100vh - 180px);
+    padding: 2rem 1rem;
+}
+
+.card-editar-ativo {
+    margin: 0;
+    align-items: center;
+    width: 100%;
+    max-width: 500px;
+    background-color: rgba(80, 80, 80, 0.2);
+    border-radius: 10px;
+    box-shadow: 0 4px 8px 0 rgba(0, 255, 234, 0.2);
+    transition: 0.3s;
+    padding: clamp(1.5rem, 6vw, 4rem);
+}
+
+.card-editar-ativo:hover {
+    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+}
+
+.card-title-editar-ativo {
+    text-align: center;
+    color: #2980b9;
+    margin-bottom: 1.5rem;
+}
+
+.btn-primary-editar-ativo {
+    margin-top: 1.5rem;
+    justify-content: center;
+    background-color: #007bff;
+    color: white;
+    padding: 0.5rem 3rem;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.btn-primary-editar-ativo:hover {
+    background-color: #0056b3;
+}
+
+.form-editar-ativo .form-group {
+    margin-bottom: 1.5rem;
+}
+
+.form-control {
+    padding-left: 0.5rem;
+    font-size: 1rem;
+    height: 2rem;
+    width: 100%;
+    border-radius: 5px;
+    background-color: #b8b8b8;
+    box-shadow: inset 0px 2px 8px rgba(0, 255, 234, 0.705);
+}
+
+.errorlist {
+    color: #e85d75;
+    list-style: none;
+    margin: 0.35rem 0;
+    padding: 0;
+}

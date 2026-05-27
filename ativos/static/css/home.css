@@ -1,0 +1,71 @@
+.home-content {
+    display: flex;
+    align-items: center;
+    gap: 3rem;
+    justify-content: space-between;
+    margin: 0 auto;
+    max-width: 1200px;
+    padding: 3rem 2rem;
+}
+
+.home-image {
+    flex: 1 1 52%;
+}
+
+.home-image img {
+    display: block;
+    height: auto;
+    max-width: 100%;
+}
+
+.home-text {
+    flex: 1 1 40%;
+    line-height: 1.6;
+}
+
+.home-text .logo {
+    display: block;
+    height: auto;
+    margin-bottom: 1rem;
+    width: 58px;
+}
+
+.paragrafo-text {
+    margin-bottom: 20px;
+}
+
+.my-button {
+    display: inline-block;
+    margin-top: 20px;
+    padding: 10px 18px;
+    background-color: #007bff;
+    color: white;
+    text-decoration: none;
+    border: none;
+    border-radius: 5px;
+    transition: background-color 0.3s;
+}
+
+
+.my-button:hover {
+    background-color: #0056b3;
+    color: #fff;
+}
+
+.logo_home {
+    width: 50px;
+    margin-right: 10px;
+}
+
+@media (max-width: 820px) {
+    .home-content {
+        flex-direction: column;
+        gap: 1.5rem;
+        padding: 2rem 1.25rem;
+    }
+
+    .home-image,
+    .home-text {
+        width: 100%;
+    }
+}
